@@ -26,20 +26,19 @@ const Todo = mongoose.model("Todo", todoSchema);
 app.use(bodyParser.json());
 const allowedOrigins = [
   "http://localhost:3000",
-  "*",
   "https://6634f4acce069a008c5f5eb5--creative-axolotl-6cc07d.netlify.app",
 ]; // Add your front-end URLs here
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-};
+// const corsOptions = {
+//   origin: function (origin, callback) {
+//     if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error("Not allowed by CORS"));
+//     }
+//   },
+// };
 
-app.use(cors(corsOptions));
+app.use(cors("*"));
 
 // Routes
 // Get all todos
@@ -91,7 +90,7 @@ app.delete("/todos/:id", async (req, res) => {
 });
 
 app.get("/", async (req, res) => {
-  res.json({ message: "backend running" });
+  res.json({ message: "backend app running" });
 });
 
 // Start server
