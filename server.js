@@ -24,7 +24,7 @@ const Todo = mongoose.model("Todo", todoSchema);
 
 // Middleware
 app.use(bodyParser.json());
-const allowedOrigins = ["http://localhost:3000", "http://example.com"]; // Add your front-end URLs here
+const allowedOrigins = ["http://localhost:3000", "*"]; // Add your front-end URLs here
 const corsOptions = {
   origin: function (origin, callback) {
     if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
@@ -84,6 +84,10 @@ app.delete("/todos/:id", async (req, res) => {
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
+});
+
+app.get("/", async (req, res) => {
+  res.json({ message: "backend running" });
 });
 
 // Start server
