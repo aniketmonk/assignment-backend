@@ -24,7 +24,11 @@ const Todo = mongoose.model("Todo", todoSchema);
 
 // Middleware
 app.use(bodyParser.json());
-const allowedOrigins = ["http://localhost:3000", "*"]; // Add your front-end URLs here
+const allowedOrigins = [
+  "http://localhost:3000",
+  "*",
+  "https://6634f4acce069a008c5f5eb5--creative-axolotl-6cc07d.netlify.app",
+]; // Add your front-end URLs here
 const corsOptions = {
   origin: function (origin, callback) {
     if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
